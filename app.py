@@ -3,7 +3,8 @@ from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
+from langchain.vectorstores import FAISS, Pinecone
+
 
 def get_text_chunks(text):
     text_splitter = CharacterTextSplitter(
@@ -17,7 +18,9 @@ def get_text_chunks(text):
 
 def get_vector_store(chunks):
     embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_texts(texts=chunks, embedding=embeddings)
+    #vectorstore = FAISS.from_texts(texts=chunks, embedding=embeddings)
+    pinecone.init()
+    
     return vectorstore
 
 
